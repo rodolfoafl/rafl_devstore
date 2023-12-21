@@ -6,6 +6,7 @@ import { Product } from '@/data/types/product'
 import { formatPrice } from '@/utils/price-format'
 
 import Link from 'next/link'
+import AddToCartButton from '@/components/add-to-cart-button'
 
 interface ProductProps {
   params: {
@@ -106,12 +107,7 @@ export default async function ProductPage({ params }: ProductProps) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white hover:bg-emerald-500"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id} />
         <Link
           href={'/'}
           className="mt-8 flex h-12 items-center justify-center rounded-full bg-transparent border border-zinc-400 font-semibold text-white hover:bg-zinc-800"
