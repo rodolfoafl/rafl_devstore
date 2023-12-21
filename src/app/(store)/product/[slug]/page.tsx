@@ -5,7 +5,7 @@ import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import { formatPrice } from '@/utils/price-format'
 
-import BackButton from '@/components/back-button'
+import Link from 'next/link'
 
 interface ProductProps {
   params: {
@@ -112,7 +112,12 @@ export default async function ProductPage({ params }: ProductProps) {
         >
           Adicionar ao carrinho
         </button>
-        <BackButton />
+        <Link
+          href={'/'}
+          className="mt-8 flex h-12 items-center justify-center rounded-full bg-transparent border border-zinc-400 font-semibold text-white hover:bg-zinc-800"
+        >
+          Voltar
+        </Link>
       </div>
     </div>
   )
