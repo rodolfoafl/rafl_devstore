@@ -1,5 +1,6 @@
 import data from './data.json'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
-  return Response.json(data.products)
+  return NextResponse.json(data.products)
 }

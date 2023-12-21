@@ -1,12 +1,13 @@
 import { z } from 'zod'
 import data from '../data.json'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { slug: string } },
 ) {
   if (request.method !== 'GET') {
-    return Response.json({ message: 'Method not allowed' }, { status: 405 })
+    return NextResponse.json({ message: 'Method not allowed' }, { status: 405 })
   }
 
   await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -15,8 +16,8 @@ export async function GET(
 
   const product = data.products.find((product) => product.slug === slug)
   if (!product) {
-    return Response.json({ message: 'Product not found' }, { status: 400 })
+    return NextResponse.json({ message: 'Product not found' }, { status: 400 })
   }
 
-  return Response.json(product)
+  return NextResponse.json(product)
 }
