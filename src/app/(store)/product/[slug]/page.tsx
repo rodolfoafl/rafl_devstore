@@ -1,8 +1,11 @@
+import { Metadata } from 'next'
+import Image from 'next/image'
+
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import { formatPrice } from '@/utils/price-format'
-import { Metadata } from 'next'
-import Image from 'next/image'
+
+import BackButton from '@/components/back-button'
 
 interface ProductProps {
   params: {
@@ -30,6 +33,18 @@ export async function generateMetadata({
     title,
   }
 }
+
+export async function generateStaticParams() {
+  const response = await api('/products/featured')
+  const products: Product[] = await response.json()
+
+  return products.map((product) => {
+    return {
+      slug: product.slug,
+    }
+  })
+}
+
 export default async function ProductPage({ params }: ProductProps) {
   const { slug } = params
   const product = await getProduct(slug)
@@ -97,6 +112,7 @@ export default async function ProductPage({ params }: ProductProps) {
         >
           Adicionar ao carrinho
         </button>
+        <BackButton />
       </div>
     </div>
   )
