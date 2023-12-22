@@ -1,8 +1,6 @@
 describe('search products', () => {
   it('should be able to search for products', () => {
-    cy.visit('/')
-
-    cy.get('input[name=q]').type('camiseta').parent('form').submit()
+    cy.searchByQuery('camiseta')
     cy.wait(1500)
 
     cy.location('pathname').should('include', '/search')

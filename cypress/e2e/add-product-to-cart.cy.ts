@@ -23,7 +23,7 @@ describe('add product to cart', () => {
   })
 
   it('should be able to search for a product and add it to the cart', () => {
-    cy.get('input[name=q]').type('camiseta').parent('form').submit()
+    cy.searchByQuery('camiseta')
     cy.wait(1500)
 
     cy.url().should('include', '/search')
